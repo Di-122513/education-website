@@ -42,9 +42,8 @@ document.addEventListener('DOMContentLoaded', () => {
     backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
     // ========== 报名表单 ==========
-    contactForm.addEventListener('submit', e => {
+    contactForm.addEventListener('submit', async e => {
         e.preventDefault();
-        const parentName = contactForm.querySelector('input[type="text"]:nth-of-type(2)')?.value?.trim() || '';
         const phone = contactForm.querySelector('input[type="tel"]').value.trim();
         if (!phone) {
             showToast('请填写手机号码', 'error');
@@ -54,12 +53,23 @@ document.addEventListener('DOMContentLoaded', () => {
         const original = btn.textContent;
         btn.textContent = '提交中...';
         btn.disabled = true;
-        setTimeout(() => {
-            showToast('报名成功！课程顾问将在2小时内电话联系您。', 'success');
-            contactForm.reset();
-            btn.textContent = original;
-            btn.disabled = false;
-        }, 1200);
+        try {
+            const response = await fetch(contactForm.action, {
+                method: 'POST',
+                body: new FormData(contactForm),
+                headers: { 'Accept': 'application/json' }
+            });
+            if (response.ok) {
+                showToast('报名成功！课程顾问将在2小时内电话联系您。', 'success');
+                contactForm.reset();
+            } else {
+                showToast('提交失败，请稍后重试或直接拨打电话。', 'error');
+            }
+        } catch (err) {
+            showToast('网络异常，请稍后重试或直接拨打电话。', 'error');
+        }
+        btn.textContent = original;
+        btn.disabled = false;
     });
 
     // ========== Toast ==========

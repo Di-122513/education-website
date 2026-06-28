@@ -298,15 +298,15 @@
                             </div>
                         </div>
                     </div>
-                    <form class="contact-form" id="contactForm">
+                    <form class="contact-form" id="contactForm" action="https://formspree.io/f/mykqjwaa" method="POST">
                         <h3>在线报名</h3>
                         <div class="form-row">
-                            <input type="text" placeholder="家长姓名" required>
-                            <input type="text" placeholder="学生姓名" required>
+                            <input type="text" name="家长姓名" placeholder="家长姓名" required>
+                            <input type="text" name="学生姓名" placeholder="学生姓名" required>
                         </div>
                         <div class="form-row">
-                            <input type="tel" placeholder="手机号码" required>
-                            <select required>
+                            <input type="tel" name="手机号码" placeholder="手机号码" required>
+                            <select name="学生年级" required>
                                 <option value="">学生年级</option>
                                 <option>小学一年级</option><option>小学二年级</option>
                                 <option>小学三年级</option><option>小学四年级</option>
@@ -318,7 +318,7 @@
                             </select>
                         </div>
                         <div class="form-row">
-                            <select required>
+                            <select name="薄弱科目" required>
                                 <option value="">薄弱科目</option>
                                 <option>语文</option><option>数学</option>
                                 <option>英语</option><option>物理</option>
@@ -326,7 +326,7 @@
                                 <option>政治</option><option>历史</option>
                                 <option>地理</option><option>全科</option>
                             </select>
-                            <select>
+                            <select name="意向班型">
                                 <option value="">意向班型</option>
                                 <option>1对1辅导</option>
                                 <option>6人精品小班</option>
@@ -334,7 +334,7 @@
                                 <option>线上直播课</option>
                             </select>
                         </div>
-                        <textarea rows="3" placeholder="其他补充说明..."></textarea>
+                        <textarea name="补充说明" rows="3" placeholder="其他补充说明..."></textarea>
                         <button type="submit" class="btn btn-primary btn-block">立即预约免费试听</button>
                     </form>
                 </div>
